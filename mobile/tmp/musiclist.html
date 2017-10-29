@@ -1,0 +1,11 @@
+<ul class="musiclist">
+    <li ng-repeat="music in musiclist.rows" ng-click="play(music.musicUrl)">
+        <div class="musicname">
+            <p>{{music.musicName}}</p>
+            <p>{{music.authorName}}</p>
+        </div>
+        <div class="musicimage">
+            <img  ng-src="../{{music.authorUrl}}"  alt="" style="width: 30px;">
+        </div>
+    </li>
+</ul>

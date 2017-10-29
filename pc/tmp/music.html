@@ -1,0 +1,95 @@
+<style>
+        /*对应的css 代码*/
+        /*修改的是文件上传的按钮的样式*/
+    .input_style_file_upload {
+        padding: 4px 10px;
+        height: 20px;
+        line-height: 20px;
+        position: relative;
+        cursor: pointer;
+        color: #888;
+        background: #fafafa;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        overflow: hidden;
+        display: inline-block;
+        display: inline;
+        zoom: 1;
+    }
+    .input_style_file_upload  input {
+        position: absolute;
+        font-size: 100px;
+        right: 0;
+        top: 0;
+        opacity: 0;
+        filter: alpha(opacity=0);
+        cursor: pointer
+    }
+    .input_style_file_upload:hover {
+        color: #444;
+        background: #eee;
+        border-color: #ccc;
+        text-decoration: none
+    }
+</style>
+<button class="btn btn-success" data-toggle="modal" data-target="#musicModal">添加音乐</button>
+<table class="table table-bordered">
+        <tr>
+            <td>编号</td>
+            <td>音乐名称</td>
+            <td>音乐的作者</td>
+            <td>作者的照片</td>
+            <td>所属分类</td>
+        </tr>
+    <tr ng-repeat="item in musiclist.rows">
+        <td>{{item.musicId}}</td>
+        <td>{{item.musicName}}</td>
+        <td>{{item.authorName}}</td>
+        <!--upload/author/afadsf.jpg-->
+        <td><img ng-src="../{{item.authorUrl}}"></td>
+        <td>{{item.categoryName}}</td>
+    </tr>
+</table>
+<div class="modal fade" id="musicModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">音乐添加</h4>
+            </div>
+            <div class="modal-body">
+                <select name="" id="" class="form-control" ng-model="categoryId">
+                    <option value="{{category.categoryId}}" ng-repeat="category in categoryList.rows">{{category.categoryName}}</option>
+                </select>
+                <br>
+                <input type="text" class="form-control" ng-model="authorName" placeholder="请输入作者名称">
+                <br>
+                <input type="text" class="form-control" ng-model="musicName" placeholder="请输入音乐名称">
+                <br>
+                <div class="fileuploadClass">
+                    <a href="javascript:;" class="input_style_file_upload">
+                        请选择作者图片
+                        <input type="file" id="input_file_imgaeId" name="author" data-url="../api/music/authorUpload.php" >
+                    </a>
+                </div>
+                <br>
+                <div class="imageShow" style="display: none;">
+                    <img src="" alt="" width="100">
+                </div>
+                <br>
+                <div class="fileuploadClass">
+                    <a href="javascript:;" class="input_style_file_upload">
+                        请选择音频
+                        <input type="file" id="input_file_musicId" name="music" data-url="../api/music/musicUpload.php">
+                    </a>
+                    <span class="imageUrl"></span>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default musicCancel" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-primary" ng-click="saveMusic()">保存</button>
+            </div>
+        </div>
+    </div>
+</div>

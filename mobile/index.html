@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="stylesheet" href="css/index.css">
+    <title>音乐播放器</title>
+    <style>
+         /*属性选择器，获取页面上面所有包含ng-cloak的元素*/
+         [ng-cloak]{
+              display: none;
+         }
+    </style>
+</head>
+<body>
+<div ng-app="app">
+    <div class="header" ng-controller="navsController">
+        <ul>
+            <!--
+            ng-cloak 是用来解决闪烁，但是并没有什么用.
+            这个是是由浏览器的加载顺序决定
+                    如果你加了ng-cloak angluar 就会去搜集这个指令 搜集这个指令就会给当前元素上面添加
+             一个样式 display:none;
+                    但是这个时候a 标签已经加载完了
+             如果我使用自己的样式来进行控制.
+            -->
+            <li ng-cloak>
+                <a href="#/category/{{category.categoryId}}" ng-repeat="category in categoryList.rows">{{category.categoryName}}</a>
+            </li>
+        </ul>
+    </div>
+    <div ng-view>
+        <!-- -->
+    </div>
+    <audio id="musicId"></audio>
+</div>
+    <script src="libs/angular/angular.min.js"></script>
+    <script src="libs/angular/angular-route.js"></script>
+    <script src="js/index.js"></script>
+    <script src="js/category.js"></script>
+</body>
+</html>

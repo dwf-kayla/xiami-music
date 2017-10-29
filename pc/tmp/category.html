@@ -1,0 +1,46 @@
+<button class="btn btn-danger" data-toggle="modal" data-target="#categoryModal">添加分类</button>
+<br><br>
+<table class="table table-bordered">
+    <tr>
+        <td> 分类的编号
+        </td>
+        <td>
+            分类名称
+        </td>
+        <td>
+            操作
+        </td>
+    </tr>
+    <tr ng-repeat="item in categoryList.rows">
+        <td>
+            {{item.categoryId}}
+        </td>
+        <td>
+            {{item.categoryName}}
+        </td>
+        <td>
+            <button class="btn btn-danger" ng-click="deleteCategory(item.categoryId)">删除</button>
+        </td>
+    </tr>
+</table>
+
+<!-- Modal -->
+<div class="modal fade" id="categoryModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">分类添加</h4>
+            </div>
+            <div class="modal-body">
+                <form action="">
+                    <input type="text" placeholder="请输入分类的名称" ng-model="categoryName" class="form-control">
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default categoryCancel" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-primary" ng-click="saveCategory()">确定</button>
+            </div>
+        </div>
+    </div>
+</div>
